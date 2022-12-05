@@ -11,7 +11,7 @@ for n, paragraph in enumerate(paragraphs[0: None]):  # enumerate returns both va
 
     for number in paragraph.split("\n"):
         if number != '':
-            elf_total = elf_total + int(number)
+            elf_total += int(number) #  += instead of  elf_total = elf total +
     all_elf_totals.append(int(elf_total))
 
 print("Elf with biggest total:", (max(all_elf_totals)))
