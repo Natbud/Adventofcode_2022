@@ -14,4 +14,8 @@ for n, paragraph in enumerate(paragraphs[0: None]):  # enumerate returns both va
             elf_total = elf_total + int(number)
     all_elf_totals.append(int(elf_total))
 
-print("Elf with biggest total:", (max(all_elf_totals)))
+#print("All Elf Totals:", all_elf_totals)
+
+#print("Elf with biggest total:", (max(all_elf_totals)))
+
+print("3 largest totals added together:", sum(sorted(all_elf_totals, reverse=True)[:3]))

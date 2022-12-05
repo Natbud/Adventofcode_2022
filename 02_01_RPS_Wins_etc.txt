@@ -1,0 +1,17 @@
+Draws:
+A X
+B Y
+C Z
+
+
+PLAYER1 ELF WINS (ME LOSING):
+A Z           (Rock  Scissors)
+B X           (Paper Rock)
+C Y	      (Scissors Paper)
+
+
+
+PLAYER 2 WINS (ME WINNING):
+C X           (Scissors Rock)
+A Y	      (Rock Paper)
+B Z           (Paper Scissors)
