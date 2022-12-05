@@ -28,13 +28,13 @@ priorities_total = 0
 
 #This calls the function:   
 for line in file_list:
-        #print(half_string(line))
+        # print(half_string(line))
         type_found = (half_string(line))
-        print(list(type_found)[0])
+        # print(list(type_found)[0])
         for i, char in enumerate(priorities):
             #print("char:",char)
             if char == (list(type_found)[0]):   # This is how to get the basic elements out of a set
-                print("char", char, "found....number:", i + 1)
+                # print("char", char, "found....number:", i + 1)
                 priorities_total += (i+1)
 
 print("final priorities total:", priorities_total)
