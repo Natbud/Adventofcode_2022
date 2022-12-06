@@ -24,7 +24,7 @@ while True:
                         # print("same character found:", c)
                         type_found.append(c)    
                         type_found = list(min(type_found)) # Chris' hacky remove duplicates....nice!
-                        print("type_found:", type_found)          
+                        #print("type_found:", type_found)          
                                                                        
         for i, char in enumerate(priorities):
             if char == type_found[0]:
