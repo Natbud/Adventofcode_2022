@@ -5,11 +5,11 @@ with open(thefilepath) as f:
     file_list = f.readlines()
     file_list = [line.strip() for line in file_list] #strip /n
 
-same = set()
+# same = set()
 type_found = []
-
-print(file_list)
-
+priorities_total = 0
+#print(file_list)
+priorities = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 x=0
 y=1
 z=2
@@ -22,13 +22,19 @@ while True:
                 for c in file_list[z]:
                     if a == b == c:
                         # print("same character found:", c)
-                        same.add(c)          
+                        type_found.append(c)    
+                        type_found = list(min(type_found)) # Chris' hacky remove duplicates....nice!
+                        print("type_found:", type_found)          
+                                                                       
+        for i, char in enumerate(priorities):
+            if char == type_found[0]:
+                #print("char", char, "found....number:", i + 1)
+                priorities_total += (i+1)    
 
-        # print(list(same)[0])
+                # print(list(same)[0])
 
-        
-
-
+        #clear out / adjust variables for next run
+        type_found = []
 
         x += 3
         y += 3
@@ -38,21 +44,12 @@ while True:
 
         break
 
-#print("type_found variable:",type_found)
-for r in same:
-    type_found.append(r)
+# Simply converting the set back into a standard list:
+#for r in same:
+#    type_found.append(r)
 
-print("type_found variable:", type_found)
+#print("type_found variable:", type_found)
 
-priorities = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-#print(len(priorities))
 
-priorities_total = 0
-
-for i, char in enumerate(priorities):
-    for j in type_found:
-        if char == j: 
-            print("char", char, "found....number:", i + 1)
-            priorities_total += (i+1)
           
 print("final priorities total:", priorities_total)
