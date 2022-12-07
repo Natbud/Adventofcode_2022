@@ -17,7 +17,8 @@ for line in file_list:
     if line.split("-", 1)[0] >= line.split(",")[1].split("-", 2)[0] and line.split("-", 1)[1].split(",")[0] <= line.split("-", 2)[2]:
         print("Right digits fully contain Left digits:", line)
         found_lines += 1  
-    
+
+# Remove duplicates and print foundlines:    
 print("total encapsulations found:", found_lines)
 
 # NOT WORKING VALUE IS TOO HIGH!!!  
