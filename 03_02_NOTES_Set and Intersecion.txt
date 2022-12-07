@@ -1,0 +1,2 @@
+It's possible to use sets with 'intersection' to compare multiple sets
+of information for similar items neatly - see Chris' solution for 03_01 and 03_02.
