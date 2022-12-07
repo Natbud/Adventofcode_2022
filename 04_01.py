@@ -14,6 +14,12 @@ for line in file_list:
     if line.split("-", 1)[0] <= line.split(",")[1].split("-", 2)[0] and line.split("-", 1)[1].split(",")[0] >= line.split("-", 2)[2]:
         print("Left digits fully contain right digits:", line)
         found_lines += 1
+
+    #check for digits same on either side of comma and move to next for iteration if so.
+    if line.split(",")[0] == line.split(",")[1]:
+            #print("SAME BOTH SIDES:",line)
+            continue   
+
     if line.split("-", 1)[0] >= line.split(",")[1].split("-", 2)[0] and line.split("-", 1)[1].split(",")[0] <= line.split("-", 2)[2]:
         print("Right digits fully contain Left digits:", line)
         found_lines += 1  
