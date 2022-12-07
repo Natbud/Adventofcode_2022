@@ -1,4 +1,3 @@
-# THIS ONE BUGGY - SOMETIMES GIVES CORRECT ANSWER SOMETIMES FINDS SAME CHARACTER TWICE...
 thefilepath = "03_01_Data.txt"
 
 with open(thefilepath) as f:
@@ -43,13 +42,5 @@ while True:
     except IndexError:
 
         break
-
-# Simply converting the set back into a standard list:
-#for r in same:
-#    type_found.append(r)
-
-#print("type_found variable:", type_found)
-
-
-          
+              
 print("final priorities total:", priorities_total)
