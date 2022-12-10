@@ -1,4 +1,4 @@
-thefilepath = "05_01_Test_Data.txt"
+thefilepath = "05_01_Data.txt"
 
 with open(thefilepath) as f:
     file_list = f.readlines()
@@ -30,11 +30,21 @@ for x in range (0,stacks_quantity):
 for line in (crate_list):
     if not line[1] == "1" and not line[0:4] == "move":
         print("crate_list crates only:", line)
-        if not line[0:2] == "  ":
-            stacks_dict['1'].append(line[1])      
-    
+        
+        
+        chartoadd = 1
+        left = 0
+        right = 2
+        for x in range (0,stacks_quantity):
+            if not line[left:right] == "  ":
+                stacks_dict[str(x+1)].append(line[chartoadd])
+            chartoadd += 4
+            left += 4
+            right += 4
 
-print(stacks_dict)
+print("Dict populated with crates:", stacks_dict)
+
+
 
 #Now start moving crates:
 number_to_move = 0
@@ -49,7 +59,22 @@ for line in (file_list):
             #print("how many", number_to_move, "from where:", move_from, "moved to:", move_to)
 
             for m in range(number_to_move):
-                #stacks_dict[move_from].pop()
-                print("item popped, dict update:", stacks_dict)
+                stacks_dict[move_to].insert(0, stacks_dict[move_from].pop(0))
+                print("stacks_dict update:", stacks_dict)
+a="1"
+#Report resulting top crates on each stack:
+
+
+
+# Gets the first item in each 'value' from dict key : value pairs:
+result = str([item[0] for item in stacks_dict.values()])
+
+
+#Cleaning up the string remove nonsesne:               
+result = result.strip('}{').replace('[', '').replace(']', '')   
+result = result.replace(':','').replace('\'','').replace(', ','')
+print(result)  
+
+                
 
 
