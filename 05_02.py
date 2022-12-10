@@ -6,8 +6,6 @@ with open(thefilepath) as f:
     crate_list = list(filter(None, crate_list))
     file_list = [line.strip() for line in file_list] #strips /n and whitespace
 
-#print("stripped file_list", file_list)
-#print("crate list:", crate_list)
 stacks_quantity = 0
 
 #find number of stacks:
@@ -17,7 +15,7 @@ for i, line in enumerate(file_list):
         #print("there are ", stacks_quantity, " stacks in this data")
         break
 
-# Create correct no of stacks (just list objects):
+# Create correct no of stacks in dictionary (just list objects):
 stacks_dict = {}
 
 for x in range (0,stacks_quantity):
@@ -53,19 +51,19 @@ for line in (file_list):
             
             #Now the actual moving:
             holding_area = []
-                        
+            # For a single crate only:          
             if number_to_move == 1:
                     stacks_dict[move_to].insert(0, stacks_dict[move_from].pop(0))
                     
             else:
-                
+            # For multiple crates (keeping them in same order)    
                 for m in range(number_to_move):
                     holding_area.append(stacks_dict[move_from].pop(0))
                   
-                print("hodling area:", holding_area)
+                #print("holding area:", holding_area)
                 for m in range(number_to_move):
                     stacks_dict[move_to].insert(0, holding_area.pop())
-                print("stacks_dict:", stacks_dict)
+                #print("stacks_dict:", stacks_dict)
                 
 
 
