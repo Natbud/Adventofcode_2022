@@ -6,8 +6,8 @@ with open(thefilepath) as f:
     crate_list = list(filter(None, crate_list))
     file_list = [line.strip() for line in file_list] #strips /n and whitespace
 
-print("stripped file_list", file_list)
-print("crate list:", crate_list)
+#print("stripped file_list", file_list)
+#print("crate list:", crate_list)
 stacks_quantity = 0
 
 #find number of stacks:
@@ -15,7 +15,7 @@ for i, line in enumerate(file_list):
     #print("checking line:", line)
     if line[0] == '1':
         stacks_quantity = int(line[-1])
-        print("there are ", stacks_quantity, " stacks in this data")
+        #print("there are ", stacks_quantity, " stacks in this data")
         break
 
 # Create correct no of stacks (just list objects):
@@ -29,7 +29,7 @@ for x in range (0,stacks_quantity):
 #Add crate stacks to dictionary:
 for line in (crate_list):
     if not line[1] == "1" and not line[0:4] == "move":
-        print("crate_list crates only:", line)
+        #print("crate_list crates only:", line)
         
         
         chartoadd = 1
@@ -42,7 +42,7 @@ for line in (crate_list):
             left += 4
             right += 4
 
-print("Dict populated with crates:", stacks_dict)
+#print("Dict populated with crates:", stacks_dict)
 
 
 
@@ -60,7 +60,7 @@ for line in (file_list):
 
             for m in range(number_to_move):
                 stacks_dict[move_to].insert(0, stacks_dict[move_from].pop(0))
-                print("stacks_dict update:", stacks_dict)
+                #print("stacks_dict update:", stacks_dict)
 a="1"
 #Report resulting top crates on each stack:
 
@@ -73,7 +73,7 @@ result = str([item[0] for item in stacks_dict.values()])
 #Cleaning up the string remove nonsesne:               
 result = result.strip('}{').replace('[', '').replace(']', '')   
 result = result.replace(':','').replace('\'','').replace(', ','')
-print(result)  
+print("Result:", result)  
 
                 
 
