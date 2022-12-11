@@ -59,6 +59,13 @@ for key, value in dirs_file_sizes.items():
 #print("dirs_children dictionary: ", dirs_children)
 for key, value in dirs_children.items():
     print(key, value)
+    
+    #this is how to get values out of a list in a dictionary:
+    if not value == []:    #ignore blank lists
+        print([value].__getitem__(0)[0])
 
+exit()
 
-        
+#Now get total size of each directory including it's children:
+for key, value in dirs_file_sizes.items():
+    grand_total_size = value + []        
