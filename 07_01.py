@@ -57,7 +57,7 @@ total_rec_size = 0
 #Children dirs dictionary has dir names in:
 #print("dirs_children dictionary: ", dirs_children)
 for dir, child_dirs in dirs_children.items():
-    print(dir, child_dirs)
+    #print(dir, child_dirs)
 
     parent_size = (dirs_file_sizes[dir])
     #print("parent:", dir, " size: ", parent_size)
@@ -71,6 +71,6 @@ for dir, child_dirs in dirs_children.items():
             #print("child ", child_found, " size:", child_size)
             total_rec_size += child_size
 
-    print("dir: ", dir, " and children have total size: ", total_rec_size)
+    print("dir: ", dir, " and children: ", child_dirs, " have total size: ", total_rec_size)
 
     total_rec_size = 0
