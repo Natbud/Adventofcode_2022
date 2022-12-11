@@ -14,9 +14,9 @@ dirs_file_sizes = {}
 dirs_children = {}
 
 for line in file_list:
-    if "cd" in line[0:4]:
+    if "cd" in line[0:4] and not "cd ." in line[0:6] and not "cd .." in line [0:7]:
         # don't need to do this for file size one as these are added in loop later..
-        dirs_children[line[5]]=[]
+        dirs_children[line.split(" ",2)[2]]=[]
        
 prev_line = []
 curdir = []
@@ -29,18 +29,19 @@ for n, line in enumerate(file_list):
         if not curdir == []:
             dirs_file_sizes[curdir]=curdir_filesizes
         
-        print("line no:", n, " start directory ", prev_line[5])
-        curdir = prev_line[5]
+        print("line no:", n, " start directory ", prev_line.split(" ",2)[2])
+        curdir = prev_line.split(" ",2)[2]
         curdir_filesizes = 0
     else:
         #Check for filesize record:
         if line[0].isdigit():
             curdir_filesizes += int(line.split(" ")[0])
-            #print("size: ", line.split(' ')[0], " added")
+            #print("size: ", line.split(" ")[0], " added")
         
         #Check also for 'child' directories:
         if "dir" in line[0:4]:
-            print("child dir found: ", line[4])
+            print("child dir found: ", line.split(" ")[1])
+            dirs_children[curdir].append(line.split(" ")[1])
           
         prev_line = line
 
@@ -50,12 +51,14 @@ print("curdir_filesize total:", curdir_filesizes, " for curdir: ",curdir)
 dirs_file_sizes[curdir]=curdir_filesizes
         
 #File size dictionary is now populated with all dirs and total size of any files within them:
-print("dirs_file_sizes dictionary: ", dirs_file_sizes)
+#print("dirs_file_sizes dictionary: ", dirs_file_sizes)
+for key, value in dirs_file_sizes.items():
+    print(key, value)
 
 #Children dirs dictionary has dir names in:
-print("dirs_children dictionary: ", dirs_children)
+#print("dirs_children dictionary: ", dirs_children)
+for key, value in dirs_children.items():
+    print(key, value)
 
-
-#Now find each direcotry's child directories:
 
         
