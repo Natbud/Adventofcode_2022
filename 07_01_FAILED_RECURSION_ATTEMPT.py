@@ -51,26 +51,48 @@ print("curdir_filesize total:", curdir_filesizes, " for curdir: ",curdir)
 dirs_file_sizes[curdir]=curdir_filesizes
 
 
-#### THIS NEXT BIT NEEDS RECURSION I THINK!! ####
+#### THIS NEXT BIT NEEDS RECURSION!!! ####
 
 total_rec_size = 0
 #Children dirs dictionary has dir names in:
 #print("dirs_children dictionary: ", dirs_children)
-for dir, child_dirs in dirs_children.items():
-    #print(dir, child_dirs)
 
-    parent_size = (dirs_file_sizes[dir])
-    #print("parent:", dir, " size: ", parent_size)
-    total_rec_size += parent_size
-    #this is how to get values out of a list in a dictionary:
-    if not child_dirs == []:    #ignore blank lists
+for dir, child_dirs in dirs_children.items():
+    print(dir, child_dirs)
+
+
+
+def folder_dig(dir, child_dirs, total_rec_size):
+
+#Base Case Exit Strategy (when there are no child dirs to check):
+    if dir == []:
+        print("Recursion Exited, child_dirs for dir:", dir, "is empty")
+        return(total_rec_size)# will this halt just because it finds any one dir with no children - not good?
+
+    else:
+
+
+
+        #parent_size = (dirs_file_sizes[dir])
+        #print("parent:", dir, " size: ", parent_size)
+        #total_rec_size += parent_size
+        #this is how to get values out of a list in a dictionary:
         for x in range(len(child_dirs)):
+
             child_found = ([child_dirs].__getitem__(0)[x])
             #print("child found: ", child_found)
             child_size = (dirs_file_sizes[child_found])
             #print("child ", child_found, " size:", child_size)
             total_rec_size += child_size
 
-    print("dir: ", dir, " and immediate children: ", child_dirs, " have total size: ", total_rec_size)
+            print("current total_rec_size: ", total_rec_size)
 
-    total_rec_size = 0
+            folder_dig(child_found, child_dirs, total_rec_size) # specifies new 'dir' as most recent child found.
+
+
+
+
+#for dir, child_dirs in dirs_children.items():
+print(folder_dig(dir, child_dirs, 0))
+
+#print("dir: ", dir, " and immediate children: ", child_dirs, " have total size: ", total_rec_size)

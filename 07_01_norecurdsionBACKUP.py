@@ -51,7 +51,7 @@ print("curdir_filesize total:", curdir_filesizes, " for curdir: ",curdir)
 dirs_file_sizes[curdir]=curdir_filesizes
 
 
-#### THIS NEXT BIT NEEDS RECURSION I THINK!! ####
+#### THIS NEXT BIT NEEDS RECURSION!!! ####
 
 total_rec_size = 0
 #Children dirs dictionary has dir names in:
