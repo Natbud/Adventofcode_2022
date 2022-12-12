@@ -71,6 +71,6 @@ for dir, child_dirs in dirs_children.items():
             #print("child ", child_found, " size:", child_size)
             total_rec_size += child_size
 
-    print("dir: ", dir, " and children: ", child_dirs, " have total size: ", total_rec_size)
+    print("dir: ", dir, " and immediate children: ", child_dirs, " have total size: ", total_rec_size)
 
     total_rec_size = 0
