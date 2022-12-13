@@ -53,7 +53,7 @@ dirs_file_sizes[curdir]=curdir_filesizes
 
 #### THIS NEXT BIT NEEDS RECURSION!!! ####
 
-total_rec_size = 0
+#total_rec_size = 0
 #Children dirs dictionary has dir names in:
 #print("dirs_children dictionary: ", dirs_children)
 
@@ -62,16 +62,16 @@ for dir, child_dirs in dirs_children.items():
 
 
 
-def folder_dig(dir, child_dirs, total_rec_size):
+def folder_dig(dir, child_dirs, total_rec_size, count):
 
+    print("range(len(child_dirs) is equal to: ", len(child_dirs)
 #Base Case Exit Strategy (when there are no child dirs to check):
-    #if dir == []:
+    if count == range(len(child_dirs)):
+        #return(total_rec_size)
         #print("Recursion Exited, child_dirs for dir:", dir, "is empty")
-        #return(total_rec_size)# will this halt just because it finds any one dir with no children - not good?
-
-    #else:
 
 
+    else:
 
         #parent_size = (dirs_file_sizes[dir])
         #print("parent:", dir, " size: ", parent_size)
@@ -86,13 +86,16 @@ def folder_dig(dir, child_dirs, total_rec_size):
             total_rec_size += child_size
 
             print("current total_rec_size: ", total_rec_size)
+            newcount = count + 1
 
-            folder_dig(child_found, child_dirs, total_rec_size) # specifies new 'dir' as most recent child found.
+            print("inside recursion current value of child_dirs:", child_dirs)
+            folder_dig(child_found, child_dirs, total_rec_size, newcount) # specifies new 'dir' as most recent child found.
 
 
 
 
-#for dir, child_dirs in dirs_children.items():
-print(folder_dig(dir, child_dirs, 0))
+for dir, child_dirs in dirs_children.items():
+    print("checking child_dirs:", child_dirs)
+    print(folder_dig(dir, child_dirs, 0,0))
 
 #print("dir: ", dir, " and immediate children: ", child_dirs, " have total size: ", total_rec_size)
