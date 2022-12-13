@@ -97,6 +97,6 @@ def folder_dig(dir, child_dirs, total_rec_size, count):
 
 for dir, child_dirs in dirs_children.items():
     print("checking child_dirs:", child_dirs)
-    print(folder_dig(dir, child_dirs, 0,0))
+    print("recursion returns:", folder_dig(dir, child_dirs, 0,0))
 
 #print("dir: ", dir, " and immediate children: ", child_dirs, " have total size: ", total_rec_size)
