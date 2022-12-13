@@ -64,11 +64,15 @@ for dir, child_dirs in dirs_children.items():
 
 def folder_dig(dir, child_dirs, total_rec_size, count):
 
-    print("range(len(child_dirs) is equal to: ", len(child_dirs))
+    #print("range(len(child_dirs) is equal to: ", len(child_dirs))
 #Base Case Exit Strategy (when there are no child dirs to check):
-    if count == (int(len(child_dirs)-1)):
+    if count == (int(len(child_dirs)-1)): # this exits only after 1 level of 'children'...
         count = 0
+    
+        print("recursion exiting - final total_rec_size:", total_rec_size)
+        print("at exit child_dirs:", child_dirs)
         return(total_rec_size)
+        
         #print("Recursion Exited, child_dirs for dir:", dir, "is empty")
 
 
@@ -89,14 +93,17 @@ def folder_dig(dir, child_dirs, total_rec_size, count):
             print("current total_rec_size: ", total_rec_size)
             newcount = count + 1
 
-            print("inside recursion current value of child_dirs:", child_dirs)
+            #print("inside recursion current value of child_dirs:", child_dirs)
             folder_dig(child_found, child_dirs, total_rec_size, newcount) # specifies new 'dir' as most recent child found.
 
 
 
 
-for dir, child_dirs in dirs_children.items():
-    print("***RECURSION START*** for parent dir:", dir, " checking child_dirs:", child_dirs)
-    print("for dir: ", dir, " recursion returns:", folder_dig(dir, child_dirs, 0, 0))
+#for dir, child_dirs in dirs_children.items():
+print("\n ***RECURSION START*** for parent dir:", dir, " checking child_dirs:", child_dirs)
+children_total_size = folder_dig(dir, child_dirs, 0, 0)
+#print("for dir: ", dir, " recursion returns:", folder_dig(dir, child_dirs, 0, 0))
+print("for dir: ", dir, " recursion returns children total size:", children_total_size)
+print("parent directory size:", dirs_file_sizes[dir])
 
 #print("dir: ", dir, " and immediate children: ", child_dirs, " have total size: ", total_rec_size)
