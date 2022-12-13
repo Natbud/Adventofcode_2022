@@ -65,11 +65,11 @@ for dir, child_dirs in dirs_children.items():
 def folder_dig(dir, child_dirs, total_rec_size):
 
 #Base Case Exit Strategy (when there are no child dirs to check):
-    if dir == []:
-        print("Recursion Exited, child_dirs for dir:", dir, "is empty")
-        return(total_rec_size)# will this halt just because it finds any one dir with no children - not good?
+    #if dir == []:
+        #print("Recursion Exited, child_dirs for dir:", dir, "is empty")
+        #return(total_rec_size)# will this halt just because it finds any one dir with no children - not good?
 
-    else:
+    #else:
 
 
 
