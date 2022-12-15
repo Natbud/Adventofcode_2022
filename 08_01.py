@@ -41,9 +41,27 @@ for r, row in enumerate(np_grid):
     for d, digit in enumerate(row):
 
         # Check if larger than rest of digits in every row / column on each of 4 sides.
-        # Check isn't on an edge in order to process:
-        if not r == 0 or d == 0 or r == file_list_row_len-1 or d == file_list_col_len-1:
-            #Then continue processing:
+        # Check is on an edge and if so 'continue' / skip:
+        if r == 0 or d == 0 or r == file_list_row_len-1 or d == file_list_col_len-1:
+            continue
+        else:
+            #Then continue processing if not an edge digit:
+            #Check if value is greater tha ll values on left of it THIS WAS TRICKY TO FIGURE OUT!:
+            print("d is:", d, " checking starting")
+            for i in range(1,d+1):
+                #print("d minus i is:", d-i)
+                if np_grid[r][d-i] >= np_grid[r][d]:
+                    #SET NOT VISIBLE:
+                    np_visible_grid[r][d] = 0
+                    break
+                else:
+                    np_visible_grid[r][d] = 1
+
+            
+            #Now same for all values to the RIGHT
+
+
+
             
 
 
