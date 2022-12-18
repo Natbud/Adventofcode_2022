@@ -17,6 +17,8 @@ def exit_strategy():
 
     print("\nnp_visible_grid:\n", np_visible_grid)
 
+    print("\nnp_grid:\n", np_grid)
+
     exit ()
 
 
@@ -70,34 +72,33 @@ for r, row in enumerate(np_grid):
                     print("np_visible_grid location: ", r, d, " marked 2") 
                     np_visible_grid[r][d] = 2
                     
-                    
                     #If marked as INVISIBLE Then continue with further checks:
-                    print("d is:", d, " checking FROM RIGHT")#  THIS IS JUMPING TO LINE 65 SOMETIMES????
-                    for t in range(1,file_list_col_len - (d+1)):
-                        print("file_list_col_len - (d+1):", (file_list_col_len - (d+1)))
-                        print("RIGHT CHECK t equals:", t)                
+                    print("d is:", d, " checking FROM RIGHT") #  THIS IS NOT WORKING WHEN d = 3   needing to change t   range(0,) not 1!
+                    for t in range(0,file_list_col_len - (d+1)):
+                        print("total number of checks is: [file_list_col_len - (d+1)]:", (file_list_col_len - (d+1)))
+                        print("RIGHT CHECK t equals:", t)
                         if np_grid[r][d+t] >= np_grid[r][d]:
                             #SET NOT VISIBLE:
                             np_visible_grid[r][d] = 2
-                            print("np_visible_grid location: ", r, d, " marked 2") 
+                            print("np_visible_grid location: ", r, d, " marked 2")
                             # Used to be a 'break' command here - not needed now?
 
                             #If marked as INVISIBLE Then continue with BOTTOM checks:
                             print("d is:", d, " checking FROM BOTTOM")
                             for b in range(1,file_list_row_len - (r)):
-                                print("file_list_row_len - (r):", (file_list_row_len - (r)))
-                                print("b equals:", b)                
+                                print("total number of checks is [file_list_row_len - (r)]:", (file_list_row_len - (r)))
+                                print("crrent check number (b):", b)                
                                 if np_grid[r+b][d] >= np_grid[r][d]:
                                     #SET NOT VISIBLE:
                                     np_visible_grid[r][d] = 2
                                     print("np_visible_grid location: ", r, d, " marked 2") 
                                     #break  - remove this break if adding another check here.....
-
-                                    #If marked as INVISIBLE Then continue with TOP checks:
+                                    
+                                    # #If marked as INVISIBLE Then continue with TOP checks:
                                     print("d is:", d, " checking FROM TOP")
-                                    for h in range(1,r+1):
-                                        print("r+1 is:", (r+1))
-                                        print("h equals:", h)                
+                                    for h in range(1,r):
+                                        print("total number of checks (r) is:", (r))
+                                        print("current check number (h):", h)                
                                         if np_grid[r-h][d] >= np_grid[r][d]:
                                             #SET NOT VISIBLE:
                                             np_visible_grid[r][d] = 2
