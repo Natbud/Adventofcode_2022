@@ -67,6 +67,11 @@ for r, row in enumerate(np_grid):
             print("d is:", d, " checking FROM LEFT")
             for i in range(1,d+1):
                 print("LEFT CHECK: i is:",i)
+                
+                #Identify the last tree in the row:
+                last_tree = len(range(1,d+1))
+                print("LEFT CHECK LAST TREE IS: ", last_tree)
+
                 if np_grid[r][d-i] >= np_grid[r][d]:
                     #SET NOT VISIBLE:
                     print("np_visible_grid location: ", r, d, " marked 2") 
@@ -74,20 +79,31 @@ for r, row in enumerate(np_grid):
                     
                     #If marked as INVISIBLE Then continue with further checks:
                     print("d is:", d, " checking FROM RIGHT") #  THIS IS NOT WORKING WHEN d = 3   needing to change t   range(0,) not 1!
-                    for t in range(0,file_list_col_len - (d+1)):
+                    for t in range(1,file_list_col_len - (d+1)):
                         print("total number of checks is: [file_list_col_len - (d+1)]:", (file_list_col_len - (d+1)))
                         print("RIGHT CHECK t equals:", t)
+
+                        #Identify the last tree in the row:
+                        last_tree = len(range(0,file_list_col_len - (d+1)))
+                        print("RIGHT CHECK LAST TREE IS: ", last_tree)
+                        print("current value of np_grid[r][d]:", np_grid[r][d])
+                        print("current value of np_grid[r][d+t]:", np_grid[r][d+t])
                         if np_grid[r][d+t] >= np_grid[r][d]:
                             #SET NOT VISIBLE:
                             np_visible_grid[r][d] = 2
                             print("np_visible_grid location: ", r, d, " marked 2")
-                            # Used to be a 'break' command here - not needed now?
+                            
 
                             #If marked as INVISIBLE Then continue with BOTTOM checks:
                             print("d is:", d, " checking FROM BOTTOM")
                             for b in range(1,file_list_row_len - (r)):
                                 print("total number of checks is [file_list_row_len - (r)]:", (file_list_row_len - (r)))
-                                print("crrent check number (b):", b)                
+                                print("crrent check number (b):", b)    
+
+                                #Identify the last tree in the row:
+                                last_tree = len(range(1,file_list_row_len - (r)))
+                                print("BOTTOM CHECK LAST TREE IS: ", last_tree)
+
                                 if np_grid[r+b][d] >= np_grid[r][d]:
                                     #SET NOT VISIBLE:
                                     np_visible_grid[r][d] = 2
@@ -98,62 +114,79 @@ for r, row in enumerate(np_grid):
                                     print("d is:", d, " checking FROM TOP")
                                     for h in range(1,r):
                                         print("total number of checks (r) is:", (r))
-                                        print("current check number (h):", h)                
+                                        print("current check number (h):", h)   
+
+                                        #Identify the last tree in the row:
+                                        last_tree = len(range(1,r))
+                                        print("TOP CHECK LAST TREE IS: ", last_tree)
+
                                         if np_grid[r-h][d] >= np_grid[r][d]:
                                             #SET NOT VISIBLE:
                                             np_visible_grid[r][d] = 2
                                             print("np_visible_grid location: ", r, d, " marked 2") 
                                             break  #no more checks to do so leave this break in......
-                                            
-
-                                            
-                                
+                               
                                         else:
                                             #TOP CHECK mark as 1 and BREAK/CONTINUE to next 'd'
-                                            print("np_visible_grid location: ", r, d, " marked 1 - break and continue with next d") 
-                                            np_visible_grid[r][d] = 1
-                                            break
+                                            if h == last_tree:
+                                                np_visible_grid[r][d] = 1
+                                                print("np_visible_grid location: ", r, d, " marked 1 - break and continue with next d") 
+                                                break
+                                            else:
+                                                print("np_visible_grid location: ", r, d, " marked 1 - continue with next tree check")
+                                                np_visible_grid[r][d] = 1
+                                                continue
 
                                     #TOP CHECK needs a 2nd 'break' at the same indent level as the RIGHT CHECK 'break' which then
                                     # sends to the Continue which instigates the next d.        
                                     break  
 
-
-
-                                    
-                        
                                 else:
-                                    #RIGHT CHECK mark as 1 and BREAK/CONTINUE to next 'd'
-                                    print("np_visible_grid location: ", r, d, " marked 1 - break and continue with next d") 
-                                    np_visible_grid[r][d] = 1
-                                    break
+                                    #BOTTOM CHECK mark as 1 and BREAK/CONTINUE to next 'd'
+                                    if b == last_tree: 
+                                        np_visible_grid[r][d] = 1
+                                        print("np_visible_grid location: ", r, d, " marked 1 - break and continue with next d")
+                                        break
+                                    else:
+                                        print("np_visible_grid location: ", r, d, " marked 1 - continue with next tree check")
+                                        np_visible_grid[r][d] = 1
+                                        continue
 
                             #BOTTOM CHECK needs a 2nd 'break' at the same indent level as the RIGHT CHECK 'break' which then
                             # sends to the Continue which instigates the next d.        
                             break  
 
                         else:
-                            #RIGHT CHECK mark as 1 and BREAK/CONTINUE to next 'd'
-                            print("np_visible_grid location: ", r, d, " marked 1 - break and continue with next d") 
-                            np_visible_grid[r][d] = 1
-                            break
-
+                            #RIGHT CHECK - Check if last tree in row then Mark as 1 and BREAK (go to next 'd')    
+                            if t == last_tree:
+                                np_visible_grid[r][d] = 1
+                                print("np_visible_grid location: ", r, d, " marked 1 - break and continue with next d") 
+                                break
+                            else:
+                                print("np_visible_grid location: ", r, d, " marked 1 - continue with next tree check")
+                                np_visible_grid[r][d] = 1
+                                continue
                     #RIGHT CHECK needs a 2nd 'break' at the same indent level as the 1st LEFT CHECK 'break' which then
                     # sends to the Continue which instigates the next d.        
                     break  
 
                 
                 else:
-                    #LEFT CHECK Mark as 1 and BREAK / EXIT
-                    print("np_visible_grid location: ", r, d, " marked 1 - break and continue with next d") 
-                    np_visible_grid[r][d] = 1
-                    break
-
+                    #LEFT CHECK - Check if last tree in row then Mark as 1 and BREAK (go to next 'd')
+                    if i == last_tree:
+                        np_visible_grid[r][d] = 1
+                        print("np_visible_grid location: ", r, d, " marked 1 - break and continue with next d") 
+                        break
+                    else:
+                        print("np_visible_grid location: ", r, d, " marked 1 - continue with next tree check")
+                        np_visible_grid[r][d] = 1
+                        continue
 
                         
 
                 
             #LEFT CHECK Continue with next 'd'
+            print("final continue reached - going to next 'd'....")
             continue
             
 exit_strategy()            

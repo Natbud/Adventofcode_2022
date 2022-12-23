@@ -1,0 +1,8 @@
+For each tree:
+
+1. check if tree next door is higher or not
+2. If adjacent tree is higher then tree is totally INVISIBLE from that direction -
+   MOVE ON TO NEXT DIRECTION FOR SAME tree   (Next CHECK BLOCK of CODE)
+3. If adjacent tree not higher then move on to CHECK NEXT TREE IN SAME DIRECTION.  (Continue statement)
+4. IF get to the end of row and tree is still VISIBLE then mark '1' on visibility grid 
+   and MOVE ON TO NEXT 'd' (next Tree to check for visibility) - BREAK Commands and final Continue for 'd'.
