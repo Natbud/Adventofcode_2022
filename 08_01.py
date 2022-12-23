@@ -78,7 +78,7 @@ for r, row in enumerate(np_grid):
                     np_visible_grid[r][d] = 2
                     
                     #If marked as INVISIBLE Then continue with further checks:
-                    print("d is:", d, " checking FROM RIGHT") #  THIS IS NOT WORKING WHEN d = 3   needing to change t   range(0,) not 1!
+                    print("d is:", d, " checking FROM RIGHT") #THIS IS NOT WORKING WHEN d = 3  is jumping straight to final continue..
                     for t in range(1,file_list_col_len - (d+1)):
                         print("total number of checks is: [file_list_col_len - (d+1)]:", (file_list_col_len - (d+1)))
                         print("RIGHT CHECK t equals:", t)
