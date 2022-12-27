@@ -1,6 +1,6 @@
 import numpy as np
 
-thefilepath = "08_01_Test_Data.txt"
+thefilepath = "08_01_Data.txt"
 
 with open(thefilepath) as f:
     file_list = f.readlines()
@@ -13,7 +13,7 @@ def exit_strategy():
         
     count = np.count_nonzero(np_visible_grid == 1)
 
-    #print("Total visible trees:,", count)
+    print("Total visible trees:,", count)
 
     #print("\nnp_visible_grid:\n", np_visible_grid)
 
