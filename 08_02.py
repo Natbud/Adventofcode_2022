@@ -21,13 +21,10 @@ for r, row in enumerate(file_list):
     for d, digit in enumerate(row):
         np_grid[r][d] = digit
 
-# NOW DO PART 2:
-
 np_visibility_grid_left = np.zeros((file_list_row_len,file_list_col_len))
 np_visibility_grid_right = np.zeros((file_list_row_len,file_list_col_len))
 np_visibility_grid_bottom = np.zeros((file_list_row_len,file_list_col_len))
 np_visibility_grid_top = np.zeros((file_list_row_len,file_list_col_len))
-
 
 ltree_visibility = 0
 rtree_visibility = 0
