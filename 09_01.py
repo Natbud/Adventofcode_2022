@@ -42,7 +42,7 @@ for m, move in enumerate(file_list):
             change = 0
         
         #check if head is adjacent to tail in N S E W directions:
-        if (x_head == x_tail and y_head == y_tail+1) or (x_head == x_tail+1 and y_head == y_tail) or (x_head == x_tail and y_head == y_tail-1) or (x_head == x_tail-1 and y_head == y_tail-1):
+        if (x_head == x_tail and y_head == y_tail+1) or (x_head == x_tail+1 and y_head == y_tail) or (x_head == x_tail and y_head == y_tail-1) or (x_head == x_tail-1 and y_head == y_tail):
             change = 0
 
 
@@ -104,5 +104,6 @@ for i in tail_coordinates:
 
 #print("tail_coordinates: ", tail_coordinates)
 #print("tail_co-or dedup: ", res)
+#print("number of co-ordinates visited by tail: ", len(res))
 print("number of co-ordinates visited by tail: ", len(res))
 exit()
