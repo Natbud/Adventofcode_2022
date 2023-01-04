@@ -193,19 +193,19 @@ for p, prev_coord in enumerate(tail_coordinates):
 
     #NOW ADD STRAIGHT MOVES FOR TAIL:
     #NORTH:
-    if (x_head == x_tail and y_head == y_tail+1):
+    if (x_head == x_tail and y_head == y_tail+2):
         y_tail +=change
 
     #EAST:
-    if (x_head == x_tail+1 and y_head == y_tail):
+    if (x_head == x_tail+2 and y_head == y_tail):
         x_tail +=change
     
     #SOUTH:
-    if (x_head == x_tail and y_head == y_tail-1):
+    if (x_head == x_tail and y_head == y_tail-2):
         y_tail -=change 
         
     #WEST:
-    if (x_head == x_tail-1 and y_head == y_tail):
+    if (x_head == x_tail-2 and y_head == y_tail):
         x_tail -=change
 
     knot_coordinates.append([x_tail,y_tail])
