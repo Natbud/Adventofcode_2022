@@ -17,6 +17,7 @@ tail_coordinates = []
 
 change = 1
 
+
 for m, move in enumerate(file_list):
     distance = int(move.split(' ')[1])
 
@@ -41,6 +42,8 @@ for m, move in enumerate(file_list):
         if x_head == x_tail and y_head == y_tail:
             change = 0
         
+        #DIRECTIONAL CHECKS:
+
         #check if head is adjacent to tail in N S E W directions:
         if (x_head == x_tail and y_head == y_tail+1) or (x_head == x_tail+1 and y_head == y_tail) or (x_head == x_tail and y_head == y_tail-1) or (x_head == x_tail-1 and y_head == y_tail):
             change = 0
@@ -111,4 +114,15 @@ def tail_report():
 tail_report()
 
 #PART 2:
+
+# might need to do an initial 'overlap' check here before first 'move'
+
+knot_coordinates == []
+
+change = 1
+
+for p, prev_coord in enumerate(tail_coordinates):
+
+    x_head = prev_coord[0]
+    y_head = prev_coord[1]
 
