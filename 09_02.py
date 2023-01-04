@@ -8,8 +8,8 @@ with open(thefilepath) as f:
 
 #print(file_list)
 
-x_head = 11
-y_head = 5
+x_head = 0
+y_head = 0
 x_tail = 0
 y_tail = 0
 
@@ -24,6 +24,8 @@ for m, move in enumerate(file_list):
     #print("distance: ",distance)
 
     for c in range(1,distance+1):
+        change = 1
+        
         #check if overlapping before any moves happen:
         if x_head == x_tail and y_head == y_tail:
             change = 0
@@ -98,7 +100,7 @@ for m, move in enumerate(file_list):
             y_tail -=change  
 
         tail_coordinates.append([x_tail,y_tail])
-        change = 1
+        
 
 def tail_report():
     #Remove duplicates from co-ordinates list:
@@ -118,12 +120,19 @@ tail_report()
 
 # might need to do an initial 'overlap' check here before first 'move'
 
+#reset x and y values:
+x_head = 0
+y_head = 0
+x_tail = 0
+y_tail = 0
+
+
 knot_coordinates = []
 
 change = 1
 
 for p, prev_coord in enumerate(tail_coordinates):
-
+    change = 1
     #OVERLAP CHECK (before head has moved):
     if x_head == x_tail and y_head == y_tail:
             change = 0
@@ -187,29 +196,22 @@ for p, prev_coord in enumerate(tail_coordinates):
     if (x_head == x_tail and y_head == y_tail+1):
         y_tail +=change
 
-        knot_coordinates.append([x_tail,y_tail])
-        continue
-
     #EAST:
     if (x_head == x_tail+1 and y_head == y_tail):
         x_tail +=change
-
-        knot_coordinates.append([x_tail,y_tail])
-        continue
     
     #SOUTH:
     if (x_head == x_tail and y_head == y_tail-1):
-        y_tail -=change
-
-        knot_coordinates.append([x_tail,y_tail])
-        continue      
+        y_tail -=change 
         
     #WEST:
     if (x_head == x_tail-1 and y_head == y_tail):
         x_tail -=change
 
-        knot_coordinates.append([x_tail,y_tail])
-        continue   
+    knot_coordinates.append([x_tail,y_tail])
+        
+
+
 
 def knot_report():
     #Remove duplicates from co-ordinates list:
@@ -224,3 +226,5 @@ def knot_report():
     print("number of co-ordinates visited by final knot: ", len(res))
 
 knot_report()
+
+print("knot_coordinates contains: ", knot_coordinates)
