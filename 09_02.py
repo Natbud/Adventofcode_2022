@@ -129,6 +129,7 @@ def knot_report():
     #print("tail_co-or dedup: ", res)
     #print("number of co-ordinates visited by tail: ", len(res))
     print("number of co-ordinates visited by knot: ", x, " equals: ", len(res))
+    print("knot: ", x, "knot_coordinates contains: ", knot_coordinates)
 
 
 # might need to do an initial 'overlap' check here before first 'move'
@@ -229,6 +230,14 @@ for x in range(2,10):
     knot_report()
 
     tail_coordinates = knot_coordinates
-    #print("knot: ", x, "knot_coordinates contains: ", knot_coordinates)
+    
     knot_coordinates = []
+
+    #reset x and y values:
+    x_head = 0
+    y_head = 0
+    x_tail = 0
+    y_tail = 0
+
+
 
