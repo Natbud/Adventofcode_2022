@@ -118,6 +118,19 @@ tail_report()
 
 #PART 2:
 
+def knot_report():
+    #Remove duplicates from co-ordinates list:
+    res = []
+    for i in knot_coordinates:
+        if i not in res:
+            res.append(i)
+
+    #print("tail_coordinates: ", tail_coordinates)
+    #print("tail_co-or dedup: ", res)
+    #print("number of co-ordinates visited by tail: ", len(res))
+    print("number of co-ordinates visited by knot: ", x, " equals: ", len(res))
+
+
 # might need to do an initial 'overlap' check here before first 'move'
 
 #reset x and y values:
@@ -131,100 +144,91 @@ knot_coordinates = []
 
 change = 1
 
-for p, prev_coord in enumerate(tail_coordinates):
-    change = 1
-    #OVERLAP CHECK (before head has moved):
-    if x_head == x_tail and y_head == y_tail:
-            change = 0
-    
-    #HEAD MOVE:
-    x_head = prev_coord[0]
-    y_head = prev_coord[1]
+for x in range(2,10):
 
+    for p, prev_coord in enumerate(tail_coordinates):
+        change = 1
 
-    #OVERLAP CHECK (after head has moved):
-    if x_head == x_tail and y_head == y_tail:
-            change = 0
-    
-    #ADJACENT AND DIAGONAL MOVE CHECKS:
-
-    #check if head is adjacent to tail in N S E W directions:
-    if (x_head == x_tail and y_head == y_tail+1) or (x_head == x_tail+1 and y_head == y_tail) or (x_head == x_tail and y_head == y_tail-1) or (x_head == x_tail-1 and y_head == y_tail):
-        change = 0
-
-
-    #check if head is diagonally adjacent to tail:
-    if (x_head == x_tail+1 and y_head == y_tail+1) or (x_head == x_tail-1 and y_head == y_tail+1) or (x_head == x_tail-1 and y_head == y_tail-1) or (x_head == x_tail+1 and y_head == y_tail-1):
-        change = 0
-    
-    
-    #Now intercept requirement for a diagonal tail move:
-    #TOP RIGHT DIAGONAL TAIL MOVE:
-    if (x_head == x_tail+1 and y_head == y_tail+2) or (x_head == x_tail+2 and y_head == y_tail+1):
-        x_tail +=1
-        y_tail +=1
-
-        knot_coordinates.append([x_tail,y_tail])
-        continue
-    
-    #TOP LEFT DIAGONAL TAIL MOVE:
-    if (x_head == x_tail-1 and y_head == y_tail+2) or (x_head == x_tail-2 and y_head == y_tail+1):
-        x_tail -=1
-        y_tail +=1
-
-        knot_coordinates.append([x_tail,y_tail])
-        continue
-    
-    #BOTTOM LEFT DIAGONAL TAIL MOVE:
-    if (x_head == x_tail-2 and y_head == y_tail-1) or (x_head == x_tail-1 and y_head == y_tail-2):
-        x_tail -=1
-        y_tail -=1
-
-        knot_coordinates.append([x_tail,y_tail])
-        continue
-
-    #BOTTOM RIGHT DIAGONAL TAIL MOVE:
-    if (x_head == x_tail+1 and y_head == y_tail-2) or (x_head == x_tail+2 and y_head == y_tail-1):
-        x_tail +=1
-        y_tail -=1
-
-        knot_coordinates.append([x_tail,y_tail])
-        continue
-
-    #NOW ADD STRAIGHT MOVES FOR TAIL:
-    #NORTH:
-    if (x_head == x_tail and y_head == y_tail+2):
-        y_tail +=change
-
-    #EAST:
-    if (x_head == x_tail+2 and y_head == y_tail):
-        x_tail +=change
-    
-    #SOUTH:
-    if (x_head == x_tail and y_head == y_tail-2):
-        y_tail -=change 
+        #OVERLAP CHECK (before head has moved):
+        if x_head == x_tail and y_head == y_tail:
+                change = 0
         
-    #WEST:
-    if (x_head == x_tail-2 and y_head == y_tail):
-        x_tail -=change
+        #HEAD MOVE:
+        x_head = prev_coord[0]
+        y_head = prev_coord[1]
 
-    knot_coordinates.append([x_tail,y_tail])
+
+        #OVERLAP CHECK (after head has moved):
+        if x_head == x_tail and y_head == y_tail:
+                change = 0
         
+        #ADJACENT AND DIAGONAL MOVE CHECKS:
+
+        #check if head is adjacent to tail in N S E W directions:
+        if (x_head == x_tail and y_head == y_tail+1) or (x_head == x_tail+1 and y_head == y_tail) or (x_head == x_tail and y_head == y_tail-1) or (x_head == x_tail-1 and y_head == y_tail):
+            change = 0
 
 
+        #check if head is diagonally adjacent to tail:
+        if (x_head == x_tail+1 and y_head == y_tail+1) or (x_head == x_tail-1 and y_head == y_tail+1) or (x_head == x_tail-1 and y_head == y_tail-1) or (x_head == x_tail+1 and y_head == y_tail-1):
+            change = 0
+        
+        
+        #Now intercept requirement for a diagonal tail move:
+        #TOP RIGHT DIAGONAL TAIL MOVE:
+        if (x_head == x_tail+1 and y_head == y_tail+2) or (x_head == x_tail+2 and y_head == y_tail+1):
+            x_tail +=1
+            y_tail +=1
 
-def knot_report():
-    #Remove duplicates from co-ordinates list:
-    res = []
-    for i in knot_coordinates:
-        if i not in res:
-            res.append(i)
+            knot_coordinates.append([x_tail,y_tail])
+            continue
+        
+        #TOP LEFT DIAGONAL TAIL MOVE:
+        if (x_head == x_tail-1 and y_head == y_tail+2) or (x_head == x_tail-2 and y_head == y_tail+1):
+            x_tail -=1
+            y_tail +=1
 
-    #print("tail_coordinates: ", tail_coordinates)
-    #print("tail_co-or dedup: ", res)
-    #print("number of co-ordinates visited by tail: ", len(res))
-    print("number of co-ordinates visited by final knot: ", len(res))
+            knot_coordinates.append([x_tail,y_tail])
+            continue
+        
+        #BOTTOM LEFT DIAGONAL TAIL MOVE:
+        if (x_head == x_tail-2 and y_head == y_tail-1) or (x_head == x_tail-1 and y_head == y_tail-2):
+            x_tail -=1
+            y_tail -=1
 
-knot_report()
+            knot_coordinates.append([x_tail,y_tail])
+            continue
 
-print("knot_coordinates contains: ", knot_coordinates)
+        #BOTTOM RIGHT DIAGONAL TAIL MOVE:
+        if (x_head == x_tail+1 and y_head == y_tail-2) or (x_head == x_tail+2 and y_head == y_tail-1):
+            x_tail +=1
+            y_tail -=1
+
+            knot_coordinates.append([x_tail,y_tail])
+            continue
+
+        #NOW ADD STRAIGHT MOVES FOR TAIL:
+        #NORTH:
+        if (x_head == x_tail and y_head == y_tail+2):
+            y_tail +=change
+
+        #EAST:
+        if (x_head == x_tail+2 and y_head == y_tail):
+            x_tail +=change
+        
+        #SOUTH:
+        if (x_head == x_tail and y_head == y_tail-2):
+            y_tail -=change 
+            
+        #WEST:
+        if (x_head == x_tail-2 and y_head == y_tail):
+            x_tail -=change
+
+        knot_coordinates.append([x_tail,y_tail])
+
+    knot_report()
+
+    tail_coordinates = knot_coordinates
+    #print("knot: ", x, "knot_coordinates contains: ", knot_coordinates)
+    knot_coordinates = []
+
