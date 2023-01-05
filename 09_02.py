@@ -1,5 +1,3 @@
-import numpy as np
-
 thefilepath = "09_01_Data.txt"
 
 with open(thefilepath) as f:
