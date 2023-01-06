@@ -78,11 +78,6 @@ for a in file_list:
         #End of Cycle Commands:
         register_value_x += int(a[1])
 
-#    if crt_pos == 600:
-#        exit_drawgrid()
-        
-
-
 niceprint_grid()
 print("total number of cycles in data: ", global_cycle)
 
