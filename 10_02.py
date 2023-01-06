@@ -1,6 +1,8 @@
 import numpy as np
 import tabulate as tab
 import os
+import pandas as pd
+import webbrowser
 
 thefilepath = "10_01_Data.txt"
 
@@ -94,3 +96,23 @@ for a in file_list:
 
 niceprint_grid()
 print("total number of cycles in data: ", global_cycle)
+
+#DISPLAY AS HTML - MY ADDITION:
+
+df = pd.DataFrame(crt_grid)
+
+df.style.apply("background-color: red")
+
+html = df.to_html()
+
+# create html 
+
+file = open("table.html", 'w')
+file.write(html)
+file.close
+
+# Open table in a browser - unformatted currently!
+new = 2
+url = "table.html"
+webbrowser.open(url,new=new)
+
