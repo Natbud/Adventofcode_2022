@@ -16,17 +16,17 @@ def niceprint_grid (grid):
 spacesplit_list = [line.strip() for line in file_list] #strip /n
 spacesplit_list = [line.split(' ') for line in spacesplit_list] #split at space character
 
-int_count = 0
+item_count = 0
 for line in spacesplit_list:
-    for word in line:
-        if word.isdigit():
-            int_count +=1
+    if line[0] == "Starting":
+        for word in line:
+            word = word.strip(',')
+            if word.isdigit():
+                item_count +=1
 
-print("file_list digit count:", int_count)
+print("file_list digit count:", item_count)
 
-
-
-monkey_item_grid = np.full((100,int(len(paragraphs))), "[]")
+monkey_item_grid = np.full((int(len(paragraphs)),item_count), ".")
 
 niceprint_grid(monkey_item_grid)
 
