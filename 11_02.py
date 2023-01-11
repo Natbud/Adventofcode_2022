@@ -3,7 +3,7 @@ import tabulate as tab
 import math
 
 
-thefilepath = "11_01_Test_Data.txt"
+thefilepath = "11_01_Data.txt"
 
 with open(thefilepath) as f:
     file_list = f.readlines()
@@ -70,7 +70,7 @@ for p, paragraph in enumerate(paragraphs):
         #now get Test divisor:
         if line[0] == "Test:":
             divisible = line[len(line) -1]
-            divisibles.append(divisible)
+            divisibles.append(int(divisible))
         
         # get if true throw:
         if line[1] == "true:":
@@ -102,12 +102,25 @@ for round in range(1,10001):
     for monkey, items in enumerate(monkey_item_grid):
         temp_items = []
         inspection_count = 0
+        
         for item in items:
             if not item == "  ":
-                temp_items.append(item)
+                temp_items.append(int(item))
+        
+
+        # Using MODULO % to reduce large numbers!
+        # STEP 1
+        # multiply all numbers we'll be diving by together - smallconfusion reddit approach:
+        # the later use this value as the mod value to adjust the values we're checking before
+        # we do the division.
+        supermodulo = np.prod(divisibles)
+
         #Inspect items:
         for temp_item in temp_items:
             
+            #SUSE THE SUPERMODULO VALUE TO REDUCE THE TEMP_ITEM VALUE:
+            temp_item = temp_item % supermodulo
+
             #Find Destination Monkey for throw:
             if operators[monkey] == "old":
                 if maths_signs[monkey] == "*":
@@ -125,7 +138,7 @@ for round in range(1,10001):
             
             #changed from div3_worry to increased worry for part 2:
             #changed / to // to deal with division of massive numbers:
-            divided_test = increased_worry//int(divisibles[monkey])
+            divided_test = increased_worry/int(divisibles[monkey])
 
 
             if divided_test == int(divided_test):
