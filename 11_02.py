@@ -3,7 +3,7 @@ import tabulate as tab
 import math
 
 
-thefilepath = "11_01_Data.txt"
+thefilepath = "11_01_Test_Data.txt"
 
 with open(thefilepath) as f:
     file_list = f.readlines()
@@ -13,6 +13,9 @@ with open(thefilepath) as f:
 
 def niceprint_grid (grid):
     print (tab.tabulate(grid))
+
+def is_multiple_check(num, check_with):
+    return num % check_with == 0
 
 spacesplit_list = [line.strip() for line in file_list] #strip /n
 spacesplit_list = [line.split(' ') for line in spacesplit_list] #split at space character
@@ -94,7 +97,7 @@ for monkey in monkey_item_grid:
     monkey_inspections.append(0)
 print("\nmonkey_inspections_initialised: ", monkey_inspections)
 
-for round in range(1,21):
+for round in range(1,10001):
     #Now start main procedure:
     for monkey, items in enumerate(monkey_item_grid):
         temp_items = []
@@ -117,8 +120,14 @@ for round in range(1,21):
                 else:
                     increased_worry = int(temp_item) + int(operators[monkey])
 
-            div3_worry = math.floor(increased_worry/3)
-            divided_test = div3_worry/int(divisibles[monkey])
+            #REMOVE DIVIDE BY 3 FOR PART 2
+            #div3_worry = math.floor(increased_worry/3)
+            
+            #changed from div3_worry to increased worry for part 2:
+            #changed / to // to deal with division of massive numbers:
+            divided_test = increased_worry//int(divisibles[monkey])
+
+
             if divided_test == int(divided_test):
                 destination_monkey = int(true_throws[monkey])
             else:
@@ -134,7 +143,8 @@ for round in range(1,21):
             #Add to destination monkey:
             for d, dest_item in enumerate(monkey_item_grid[destination_monkey]):
                 if dest_item == "  ":
-                    monkey_item_grid[destination_monkey][d] = div3_worry
+                    #Changed div3_worry to incrased worry for part 2:
+                    monkey_item_grid[destination_monkey][d] = increased_worry
                     #print("div3_worry value:", div3_worry)
                     #print("value at new destination: ", monkey_item_grid[destination_monkey][d])
                     break
@@ -143,8 +153,11 @@ for round in range(1,21):
         
         monkey_inspections[monkey] += inspection_count
     
-    if round == 20:
-        print("\nFinal round monkey items: ", round)        
+    if (is_multiple_check(round, 100)):
+        print(round)
+
+    if round == 10001:
+        #print("\nFinal round monkey items: ", round)        
         niceprint_grid(monkey_item_grid)
 
 #print("Total monkey inspection counts: ", monkey_inspections)
@@ -153,4 +166,3 @@ monkey_business = reversed_inspections[0]*reversed_inspections[1]
 
 print("\nMonkey business: ", monkey_business, "\n")
 
-        
