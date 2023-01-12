@@ -7,7 +7,7 @@ thefilepath = "12_01_Test_Data.txt"
 with open(thefilepath) as f:
     file_list = f.readlines()
     file_list = [line.strip() for line in file_list] #strip /n
-    file_list = [line.split(' ') for line in file_list] #split at space  NOT NEED THIS IN MAIN PROGRAM!!
+    
 #FUNCTIONS:
 
 def niceprint_grid (grid):

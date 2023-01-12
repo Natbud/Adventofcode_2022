@@ -12,8 +12,6 @@ with open(thefilepath) as f:
 alphabet = list(map(chr, range(97, 123)))
 grid_2d = [line for line in file_list]
 
-#print("file_list: ", file_list)
-#print("grid_2d: ", grid_2d)
 
 #FUNCTIONS:
 
@@ -50,13 +48,22 @@ class Solution:
             self.mapping[(m,n)] = res
         return self.mapping.get((m,n))
  
+
+# MAIN CODE:
+
+#print("file_list: ", file_list)
+print("\nInitial Grid:\n")
+niceprint_grid(grid_2d)
+
+
 M = file_list
 m, n = len(M), len(M[0])
 a = Solution()
 res = a.printAllPaths(M, m, n)
+print("\n\nPaths from top left to bottom right:\n")
 for i in res:
     print(i)
-
+print("\n")
 
 
 
