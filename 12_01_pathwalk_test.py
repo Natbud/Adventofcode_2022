@@ -2,7 +2,7 @@ import string
 import numpy as np
 import tabulate as tab
 
-thefilepath = "12_01_Test_Data.txt"
+thefilepath = "12_01_pathwalk_test.txt"
 
 with open(thefilepath) as f:
     file_list = f.readlines()
@@ -13,8 +13,8 @@ alphabet = list(map(chr, range(97, 123)))
 grid_2d = [line for line in file_list]
 
 #print("file_list: ", file_list)
-print("grid_2d: ", grid_2d)
-exit()
+#print("grid_2d: ", grid_2d)
+
 #FUNCTIONS:
 
 def niceprint_grid (grid):
