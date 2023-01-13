@@ -31,8 +31,8 @@ for r, row in enumerate(grid_2d):
             char = "a"
         elif char == "E":
             char = "z" 
-        #grid_2d[r][c] = alphabet.index(char)+1
-        grid_2d[r][c] = 1
+        grid_2d[r][c] = alphabet.index(char)+1
+        #grid_2d[r][c] = 1
         
 niceprint_grid(grid_2d)
 
