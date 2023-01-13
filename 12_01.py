@@ -1,8 +1,7 @@
 import string
 import numpy as np
 import tabulate as tab
-from pathfinding.core.grid import Grid
-from pathfinding.finder.a_star import AStarFinder
+import ascii_lowercase
 
 thefilepath = "12_01_Test_Data.txt"
 
@@ -20,11 +19,36 @@ alphabet = list(map(chr, range(97, 123)))
 def niceprint_grid (grid):
     print (tab.tabulate(grid))
 
+def height(s):
+    if s in ascii_lowercase:
+        return ascii_lowercase.index(s)
+    if s == "S":
+        return 0
+    if s == "E":
+        return 25
+
+# Determine Neighbours
+
+
 #MAIN CODE using PATHFINDING module
+
+
+
+
 
 niceprint_grid(grid_2d)
 
-#Converting grid to height integers.
+
+
+
+
+
+
+"""
+OLD CODE:
+
+
+#Converting grid to height integers and add to a new grid.
 for r, row in enumerate(grid_2d):
     for c, char in enumerate(row):
         if char == "S":
@@ -33,24 +57,6 @@ for r, row in enumerate(grid_2d):
             char = "z" 
         grid_2d[r][c] = alphabet.index(char)+1
         #grid_2d[r][c] = 1
-        
-niceprint_grid(grid_2d)
-
-#Create 'pathfinder' Grid
-grid = Grid(matrix = grid_2d)
-
-#Establish start and end points for path
-start = grid.node(0,0)
-end = grid.node(5,2)
-
-#Create a 'finder' with a movement style:
-finder = AStarFinder()
-
-#Find a path:
-path, runs = finder.find_path(start, end, grid)
-
-print('operations:', runs, 'path length:', len(path))
 
 
-
-
+"""
