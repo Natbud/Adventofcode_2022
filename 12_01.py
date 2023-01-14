@@ -16,10 +16,11 @@ alphabet = list(map(chr, range(97, 123)))
 
 
 #FUNCTIONS:
+
 def niceprint_grid (grid):
     print (tab.tabulate(grid))
 
-def height(s):
+def get_height(s):
     if s in ascii_lowercase:
         return ascii_lowercase.index(s)
     if s == "S":
@@ -27,8 +28,11 @@ def height(s):
     if s == "E":
         return 25
 
-# Determine Neighbours
-
+    # Determine Neighbours function
+def get_neighbours(i,j):
+    for di, dj in [[1, 0], [-1, 0], [0, 1], [0, -1]]:
+        ii = i + di
+        jj = j + dj
 
 #MAIN CODE using PATHFINDING module
 
