@@ -24,12 +24,13 @@ def split_paragraph2(input_lines):
 
 #Iterate through all the files:   
 for file in os.listdir(directory):
-     filename = str(os.fsdecode(file))
-     if filename.endswith(".pro"): 
-         #print(os.path.join(str(directory), "\n", str(filename)))
-         print(filename)
+    updated_text = []
+    filename = str(os.fsdecode(file))
+    if filename.endswith(".pro"): 
+        #print(os.path.join(str(directory), "\n", str(filename)))
+        print(filename)
          
-         with open(filename) as f:
+        with open(filename) as f:
             file_list = f.readlines()
 
             
@@ -38,7 +39,7 @@ for file in os.listdir(directory):
             #Split into paragraphs calling function and add comments:
             for p, paragraph in enumerate(split_paragraph2(file_list)):
                 if paragraph[0][0]=="{":
-                    updated_text.append(paragraph)
+                   updated_text.append(paragraph)
                 else:
                     added_comment = f"\n{{comment: SECTION {p}}}\n"
                     updated_text.append(added_comment)
@@ -65,5 +66,5 @@ for file in os.listdir(directory):
 
 
 
-     else:
-         continue
+    else:
+        continue
